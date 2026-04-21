@@ -1,0 +1,26 @@
+# Dependencias
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Binarios de Android/iOS (por si compilás el APK)
+*.apk
+*.aab
+*.jks
+
+# Variables de entorno y secretos
+.env
+*.json
+!package.json
+!app.json
+
+# Logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Sistema
+.DS_Store
