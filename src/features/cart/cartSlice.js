@@ -26,6 +26,6 @@ export const cartSlice = createSlice({
   },
 });
 
-// ACA ESTABA EL ERROR: Era .actions, no .js
+
 export const { addItem, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;
