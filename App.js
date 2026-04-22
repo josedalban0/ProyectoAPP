@@ -15,7 +15,7 @@ const AppContent = () => {
         await init();
         console.log('DB inicializada');
 
-        // 2. Buscamos si hay una sesión guardada
+        // 2. Busca si hay una sesión guardada
         const session = await fetchSession();
         
         if (session) {
