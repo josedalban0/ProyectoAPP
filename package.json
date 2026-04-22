@@ -1,7 +1,7 @@
 {
   "name": "proyectoapp",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -13,6 +13,7 @@
     "@react-navigation/stack": "^7.8.10",
     "@reduxjs/toolkit": "^2.11.2",
     "expo": "~54.0.33",
+    "expo-file-system": "~19.0.21",
     "expo-image-picker": "~17.0.10",
     "expo-location": "~19.0.8",
     "expo-sqlite": "~16.0.10",
