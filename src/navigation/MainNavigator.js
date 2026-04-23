@@ -4,9 +4,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
+import CategoriesScreen from '../screens/CategoriesScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ItemDetail from '../screens/ItemDetail';
 import LoginScreen from '../screens/LoginScreen';
-import ProfileScreen from '../screens/ProfileScreen'; // Nueva pantalla
+import ProfileScreen from '../screens/ProfileScreen';
+import CartScreen from '../screens/CartScreen';
 
 import { clearUser } from '../features/auth/authSlice';
 import { deleteSession } from '../db';
@@ -28,10 +31,10 @@ const MainNavigator = () => {
         {user ? (
           <>
             <Stack.Screen 
-              name="Home" 
-              component={HomeScreen} 
+              name="Categories" 
+              component={CategoriesScreen} 
               options={({ navigation }) => ({ 
-                title: 'Mi E-Commerce',
+                title: 'Categorías',
                 headerLeft: () => (
                   <TouchableOpacity 
                     style={styles.headerButton} 
@@ -41,19 +44,42 @@ const MainNavigator = () => {
                   </TouchableOpacity>
                 ),
                 headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.headerButton} 
-                    onPress={handleLogout}
-                  >
-                    <Text style={styles.logoutText}>Salir</Text>
-                  </TouchableOpacity>
+                  <View style={styles.headerRightContainer}>
+                    <TouchableOpacity 
+                      style={styles.headerButton} 
+                      onPress={() => navigation.navigate('Cart')}
+                    >
+                      <Text style={styles.cartIcon}>🛒</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                      style={styles.headerButton} 
+                      onPress={handleLogout}
+                    >
+                      <Text style={styles.logoutText}>Salir</Text>
+                    </TouchableOpacity>
+                  </View>
                 ),
               })} 
+            />
+            <Stack.Screen 
+              name="Home" 
+              component={HomeScreen} 
+              options={({ route }) => ({ title: route.params?.category || 'Productos' })} 
+            />
+            <Stack.Screen 
+              name="Detail" 
+              component={ItemDetail} 
+              options={{ title: 'Detalle' }} 
             />
             <Stack.Screen 
               name="Profile" 
               component={ProfileScreen} 
               options={{ title: 'Mi Perfil' }} 
+            />
+            <Stack.Screen 
+              name="Cart" 
+              component={CartScreen} 
+              options={{ title: 'Mi Carrito' }} 
             />
           </>
         ) : (
@@ -69,19 +95,11 @@ const MainNavigator = () => {
 };
 
 const styles = StyleSheet.create({
-  headerButton: {
-    paddingHorizontal: 15,
-  },
-  profileText: {
-    color: '#4A90E2',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  logoutText: {
-    color: '#f44336',
-    fontWeight: 'bold',
-    fontSize: 16,
-  }
+  headerButton: { paddingHorizontal: 10 },
+  headerRightContainer: { flexDirection: 'row', alignItems: 'center' },
+  profileText: { color: '#4A90E2', fontWeight: 'bold', fontSize: 16 },
+  logoutText: { color: '#f44336', fontWeight: 'bold', fontSize: 16 },
+  cartIcon: { fontSize: 22 }
 });
 
 export default MainNavigator;
