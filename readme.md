@@ -12,6 +12,8 @@ Para probar la aplicación directamente en tu dispositivo Android sin necesidad 
 
 > **Nota:** Al instalar, es posible que Android solicite permisos para "Instalar aplicaciones de fuentes desconocidas". Debes aceptarlos para completar la instalación.
 
+* Aclaratoria la app (apk) se encuentra en la carpeta raiz como (ProyectoAPP_JoseDalbano.apk)
+
 ---
 
 ## 📱 Funcionalidades Principales
