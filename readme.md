@@ -2,6 +2,18 @@
 
 Este es el proyecto final para el curso de React Native de Coderhouse. Se trata de una aplicación móvil de comercio electrónico completamente funcional que integra navegación avanzada, manejo de estado global, autenticación de usuarios y persistencia de datos local mediante SQLite.
 
+---
+
+## 📥 Descarga e Instalación (APK)
+
+Para probar la aplicación directamente en tu dispositivo Android sin necesidad de configurar el entorno de desarrollo, puedes descargar el archivo ejecutable aquí:
+
+📦 **[Descargar APK del Proyecto](https://expo.dev/artifacts/eas/csvUQReHkCKgBtSLMR2HxP.apk)**
+
+> **Nota:** Al instalar, es posible que Android solicite permisos para "Instalar aplicaciones de fuentes desconocidas". Debes aceptarlos para completar la instalación.
+
+---
+
 ## 📱 Funcionalidades Principales
 
 * **Autenticación de Usuarios:** Sistema de Registro e Inicio de Sesión integrado con **Firebase Auth**. Incluye validación de errores (contraseñas cortas, mail duplicado, etc.).
@@ -21,9 +33,9 @@ Este es el proyecto final para el curso de React Native de Coderhouse. Se trata 
 * **Navegación:** React Navigation (Stack)
 * **Hardware:** Expo Image Picker & Expo Location
 
-## 🔧 Instalación y Uso
+## 🔧 Instalación para Desarrolladores
 
-Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
+Para ejecutar este proyecto en tu entorno local y ver el código fuente:
 
 1.  **Clonar el repositorio:**
     ```bash
