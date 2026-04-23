@@ -34,7 +34,6 @@ const LoginScreen = () => {
         localId: data.localId
       }));
 
-      // 2. Persistimos en SQLite
       await insertSession({
         localId: data.localId,
         email: data.email,

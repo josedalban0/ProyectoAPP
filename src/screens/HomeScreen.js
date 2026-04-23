@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { FlatList, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, Image } from 'react-native';
 import { useGetProductsQuery } from '../services/shopService';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../features/cart/cartSlice';
@@ -8,13 +8,27 @@ const HomeScreen = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const dispatch = useDispatch();
 
+  const onAddToCart = (item) => {
+    dispatch(addItem(item));
+    Alert.alert(
+      "¡Éxito!",
+      `${item.title} se agregó al carrito.`,
+      [{ text: "Ok" }]
+    );
+  };
+
   const renderProduct = ({ item }) => (
     <View style={styles.card}>
+      <Image 
+        source={{ uri: item.image }} 
+        style={styles.image} 
+        resizeMode="contain" 
+      />
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.price}>${item.price}</Text>
       <TouchableOpacity 
         style={styles.button} 
-        onPress={() => dispatch(addItem(item))}
+        onPress={() => onAddToCart(item)}
       >
         <Text style={styles.buttonText}>Agregar al carrito</Text>
       </TouchableOpacity>
@@ -41,9 +55,9 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={products}
+        data={products ? Object.values(products) : []}
         renderItem={renderProduct}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => item.id?.toString() || index.toString()}
         numColumns={2}
       />
     </View>
@@ -66,7 +80,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  title: { fontSize: 16, fontWeight: 'bold', color: '#333', textAlign: 'center' },
+  image: {
+    width: 120,
+    height: 120,
+    marginBottom: 10,
+    borderRadius: 8,
+  },
+  title: { fontSize: 14, fontWeight: 'bold', color: '#333', textAlign: 'center', height: 40 },
   price: { color: '#4A90E2', fontWeight: 'bold', marginVertical: 5 },
   button: { backgroundColor: '#4A90E2', padding: 8, borderRadius: 5, marginTop: 5 },
   buttonText: { color: '#fff', fontSize: 12, fontWeight: '600' }
